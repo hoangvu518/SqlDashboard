@@ -1,0 +1,10 @@
+.active {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 8px 16px;
+}

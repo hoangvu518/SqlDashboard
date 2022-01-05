@@ -1,0 +1,12 @@
+<mat-expansion-panel
+  (opened)="panelOpenState = true"
+  (closed)="panelOpenState = false"
+>
+  <mat-expansion-panel-header>
+    <mat-panel-title> Click to filter columns </mat-panel-title>
+  </mat-expansion-panel-header>
+  <!-- <p>I'm visible because I am open</p> -->
+  <ng-container *ngFor="let column of columns">
+    <mat-slide-toggle checked="true"> {{ column }} </mat-slide-toggle>
+  </ng-container>
+</mat-expansion-panel>
