@@ -16,11 +16,11 @@ import { InMemoryDataService } from './in-memory-data.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule,
     BrowserAnimationsModule,
 
+    CoreModule,
     SharedModule,
-    HomeModule,
+    // HomeModule,
 
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,

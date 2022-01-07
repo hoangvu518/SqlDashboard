@@ -6,6 +6,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   exports: [
@@ -16,6 +17,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatExpansionModule,
     MatSlideToggleModule,
     MatPaginatorModule,
+    DragDropModule,
   ],
 })
 export class MaterialModule {}

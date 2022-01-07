@@ -6,7 +6,7 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const test = [
+    const servers = [
       {
         Id: 1,
         PhysicalName: 'FD123',
@@ -268,6 +268,6 @@ export class InMemoryDataService implements InMemoryDbService {
       //   email: 'asasa22@gmail.com',
       // },
     ];
-    return { test, employees };
+    return { servers, employees };
   }
 }

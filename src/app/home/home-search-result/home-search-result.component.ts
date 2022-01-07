@@ -3,15 +3,16 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { map, merge, Observable, startWith, switchMap, tap } from 'rxjs';
-import { DBResult } from '../core/models/db-result.model';
-import { Employee } from '../core/models/employee.model';
-import { DbSearchService, EmployeeService } from '../core/services';
+import { Observable, Subscription } from 'rxjs';
+import { DBResult } from '@core/models/db-result.model';
+import { Employee } from '@core/models/employee.model';
+import { DBSearchColumnDef, DBSearchState } from '../home-state.service';
 
 @Component({
   selector: 'app-home-search-result',
@@ -19,11 +20,43 @@ import { DbSearchService, EmployeeService } from '../core/services';
   styleUrls: ['./home-search-result.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeSearchResultComponent implements OnInit, AfterViewInit {
+export class HomeSearchResultComponent
+  implements OnInit, AfterViewInit, OnDestroy
+{
   // @Input() dataSource$!: Observable<DBResult[]>;
-  @Input() source$!: Observable<Employee[]>;
+  @Input() source$!: Observable<DBResult[]>;
+  @Input() searchState$!: Observable<DBSearchState>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
+  stateSubscription!: Subscription;
+
+  columns!: DBSearchColumnDef[];
+
+  // columns = [
+  //   {
+  //     columnDef: 'Id',
+  //     header: 'Id',
+  //     cell: (element: DBResult) => `${element.Id}`,
+  //   },
+  //   {
+  //     columnDef: 'PhysicalName',
+  //     header: 'Physical Name',
+  //     cell: (element: DBResult) => `${element.PhysicalName}`,
+  //   },
+  //   {
+  //     columnDef: 'AliasName',
+  //     header: 'Alias Name',
+  //     cell: (element: DBResult) => `${element.AliasName}`,
+  //   },
+  //   {
+  //     columnDef: 'ProjectName',
+  //     header: 'Project Name',
+  //     cell: (element: DBResult) => `${element.ProjectName}`,
+  //   },
+  // ];
+  // displayedColumns = this.columns.map((c) => c.columnDef);
+  displayedColumns!: string[];
   data: Employee[] = [];
   // data: DBResult[] = [
   //   {
@@ -40,14 +73,14 @@ export class HomeSearchResultComponent implements OnInit, AfterViewInit {
   //   },
   // ];
   // data!: DBResult[];
-  displayedColumns = ['id'];
+  // displayedColumns = ['id'];
   // displayedColumns = ['Id', 'PhysicalName', 'AliasName', 'ProjectName'];
-  recordCount = 0;
+
   // constructor() {}
-  constructor(
-    private dbSearchService: DbSearchService,
-    private employeeService: EmployeeService
-  ) {}
+  constructor() {}
+  ngOnDestroy(): void {
+    // this.stateSubscription.unsubscribe();
+  }
   ngAfterViewInit(): void {
     // this.employeeService.getAll().subscribe((x) => (this.data = x));
     // If the user changes the sort order, reset back to the first page.
@@ -85,6 +118,10 @@ export class HomeSearchResultComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    // this.stateSubscription = this.searchState$.subscribe((x) => {
+    //   this.columns = x.columnsDef;
+    //   this.displayedColumns = x.columnsDef.map((x) => x.columnDef);
+    // });
     // this.employeeService.getAll().subscribe((x) => (this.data = x));
     // this.dataSource$.subscribe((x) => (this.data = x));
     // console.log(this.data);
@@ -97,7 +134,6 @@ export class HomeSearchResultComponent implements OnInit, AfterViewInit {
     //   console.log(this.data);
     //   console.log('hahahahah');
     // });
-
-    this.source$.subscribe((x) => (this.data = x));
+    // this.source$.subscribe((x) => (this.data = x));
   }
 }

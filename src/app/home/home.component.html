@@ -3,7 +3,17 @@
 
   <app-home-search></app-home-search>
   <div class="mb-1"></div>
-  <app-home-column-filter></app-home-column-filter>
+  <app-home-search-export
+    [pdfData$]="data$"
+    [searchState$]="searchState$"
+  ></app-home-search-export>
+  <app-home-column-filter
+    (columnFilterChange)="onFilterChange($event)"
+    [searchState$]="searchState$"
+  ></app-home-column-filter>
   <div class="mb-1"></div>
-  <app-home-search-result [source$]="data"></app-home-search-result>
+  <app-home-search-result
+    [source$]="data$"
+    [searchState$]="searchState$"
+  ></app-home-search-result>
 </div>

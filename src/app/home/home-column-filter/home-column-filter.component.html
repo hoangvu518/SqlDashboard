@@ -6,7 +6,13 @@
     <mat-panel-title> Click to filter columns </mat-panel-title>
   </mat-expansion-panel-header>
   <!-- <p>I'm visible because I am open</p> -->
-  <ng-container *ngFor="let column of columns">
-    <mat-slide-toggle checked="true"> {{ column }} </mat-slide-toggle>
+  <ng-container *ngFor="let column of (searchState$ | async)?.columnsDef">
+    <mat-slide-toggle
+      checked="true"
+      [name]="column.columnDef"
+      (change)="onToggleChange($event)"
+    >
+      {{ column.header }}
+    </mat-slide-toggle>
   </ng-container>
 </mat-expansion-panel>

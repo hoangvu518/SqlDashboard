@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './layout';
 
 import { MaterialModule } from './lib/material/material.module';
+// import { JspdfModule } from './lib/material/jspdf.module';
+// import {jsPDF} from 'jspdf';
 
 @NgModule({
   declarations: [HeaderComponent],
@@ -16,6 +18,7 @@ import { MaterialModule } from './lib/material/material.module';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+
     MaterialModule,
   ],
   exports: [

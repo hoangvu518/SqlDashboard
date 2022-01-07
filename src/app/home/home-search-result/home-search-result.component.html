@@ -1,0 +1,53 @@
+<!-- <ng-container *ngFor="let item of dataSource$ | async">
+  {{ item.Id }}
+</ng-container> -->
+<!--
+<ng-container *ngFor="let item of source$ | async">
+  {{ item.Id }}
+</ng-container> -->
+<!--
+<ng-container *ngFor="let item of data">
+  {{ item.id }}
+</ng-container> -->
+
+<!-- <table mat-table [dataSource]="data" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>No.</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table> -->
+
+<!-- <table mat-table [dataSource]="source$" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>No.</th>
+    <td mat-cell *matCellDef="let element">{{ element.Id }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table> -->
+<table mat-table [dataSource]="source$" class="mat-elevation-z8 demo-table">
+  <ng-container
+    *ngFor="let column of (searchState$! | async)?.columnsDef"
+    [matColumnDef]="column.columnDef"
+  >
+    <th mat-header-cell *matHeaderCellDef>
+      {{ column.header }}
+    </th>
+    <td mat-cell *matCellDef="let row">
+      {{ column.cell(row) }}
+    </td>
+  </ng-container>
+
+  <tr
+    mat-header-row
+    *matHeaderRowDef="(searchState$ | async)?.displayedColumns"
+  ></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: (searchState$ | async)?.displayedColumns"
+  ></tr>
+</table>
