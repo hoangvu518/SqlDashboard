@@ -6,9 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './layout';
 
-import { MaterialModule } from './lib/material/material.module';
-// import { JspdfModule } from './lib/material/jspdf.module';
-// import {jsPDF} from 'jspdf';
+import { MaterialModule } from './libs/material.module';
 
 @NgModule({
   declarations: [HeaderComponent],

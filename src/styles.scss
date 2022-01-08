@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+
+@import "./theme/dark-theme.scss";
+@import "./theme/light-theme.scss";
+// @include mat.core();
+// @use "./theme/indigo-pink-theme.scss" as ind;
+$dark-color: #303030;
+$white-color: #ffffff;
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+@include mat.core();
+//set default to dark theme
+
+@include mat.all-component-themes($light-theme);
+.dark-theme {
+  @include mat.all-component-themes($dark-theme);
+}
+
+body.dark-theme {
+  background-color: $dark-color;
+  color: $white-color;
+}
