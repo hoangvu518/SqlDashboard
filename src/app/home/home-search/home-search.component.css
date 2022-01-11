@@ -1,4 +1,21 @@
-.search-container {
+/* :host() {
+  display: flex;
+} */
+form {
+  display: flex;
+}
+#input {
+  width: 100%;
+}
+
+mat-form-field:nth-last-of-type(1) {
+  flex-grow: 1;
+}
+/* mat-form-field:last-child {
+  width: 100%;
+} */
+
+/* .search-container {
   display: flex;
   align-items: center;
   width: 80%;
@@ -25,7 +42,7 @@
 
 .search-container input:focus-visible {
   outline: none;
-}
+} */
 
 /* :host {
   background-color: green;

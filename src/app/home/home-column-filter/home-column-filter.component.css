@@ -1,3 +1,11 @@
 .mat-expansion-panel-body {
   display: flex;
 }
+
+.expension-panel-container {
+  display: flex;
+}
+
+mat-slide-toggle {
+  display: block;
+}

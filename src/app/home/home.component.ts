@@ -1,37 +1,41 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { DBResult } from '../core/models/db-result.model';
-import { Employee } from '../core/models/employee.model';
-import { DbSearchService, EmployeeService } from '../core/services';
-import { DBSearchState, HomeStateService } from './home-state.service';
+import { DBResult } from '@core/models/db-result.model';
+import { DBResultDto } from '@core/services';
+import { Observable, ObservedValueOf, tap } from 'rxjs';
+import {
+  ColumnDefinition,
+  HomeFacadeService,
+  State,
+} from './home-facade.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  // tableData = new Observable<DBResult[]>();
-  data$!: Observable<DBResult[]>;
-  searchState$!: Observable<DBSearchState>;
-  constructor(
-    private dbSearchService: DbSearchService,
-    private employeeService: EmployeeService,
-    private homeStateService: HomeStateService
-  ) {}
+  displayedColumns$!: Observable<string[]>;
+  // hiddenColumns$!: Observable<string[]>;
+  allColumn$!: Observable<ReadonlyArray<string>>;
+  columnsDefinition$!: Observable<ReadonlyArray<ColumnDefinition>>;
+  allDatabase$!: Observable<DBResultDto>;
+  pageIndex$!: Observable<number>;
+  pageSize$!: Observable<number>;
+  // state$!: Observable<State>;
+  constructor(private homeFacadeService: HomeFacadeService) {}
 
   ngOnInit(): void {
-    this.data$ = this.dbSearchService.getAll();
-    this.searchState$ = this.homeStateService.state$;
-    // this.tableData = this.dbSearchService.getAll();
-    // this.employeeService.getAll().subscribe((x) => console.log(x));
+    this.displayedColumns$ = this.homeFacadeService.displayedColumns$;
+    // this.hiddenColumns$ = this.homeFacadeService.hiddenColumns$;
+    this.allColumn$ = this.homeFacadeService.allColumns$;
+    this.columnsDefinition$ = this.homeFacadeService.columnsDefinition$;
+    // this.allDatabase$ = this.homeFacadeService.getAllDatabase(); // this.homeFacadeService.getAllDatabase().subscribe((x) => console.log(x));
+    this.pageIndex$ = this.homeFacadeService.pageIndex$;
+    this.pageSize$ = this.homeFacadeService.pageSize$;
+    // this.state$ = this.homeFacadeService.state$;
   }
 
-  onFilterChange(columns: string[]) {
-    // debugger;
-    // console.log('hoho');
-    // console.log(data);
-    this.homeStateService.UpdateDisplayedColumns(columns);
+  changeDisplayedColumns(displayedColumns: string[]) {
+    this.homeFacadeService.changeDisplayedColumns(displayedColumns);
   }
 }

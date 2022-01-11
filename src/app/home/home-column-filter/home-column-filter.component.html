@@ -6,13 +6,19 @@
     <mat-panel-title> Click to filter columns </mat-panel-title>
   </mat-expansion-panel-header>
   <!-- <p>I'm visible because I am open</p> -->
-  <ng-container *ngFor="let column of (searchState$ | async)?.columnsDef">
-    <mat-slide-toggle
-      checked="true"
-      [name]="column.columnDef"
-      (change)="onToggleChange($event)"
-    >
-      {{ column.header }}
-    </mat-slide-toggle>
-  </ng-container>
+  <div class="expansion-panel-container">
+    <button mat-raised-button color="primary" (click)="resetDisplayedColumns()">
+      Reset
+    </button>
+    <div class="mb-1"></div>
+    <ng-container *ngFor="let column of columnsDefinition$ | async">
+      <mat-slide-toggle
+        [checked]="isCheck(column.columnDef)"
+        [name]="column.columnDef"
+        (change)="determineColumnVisibility($event)"
+      >
+        {{ column.header }}
+      </mat-slide-toggle>
+    </ng-container>
+  </div>
 </mat-expansion-panel>

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -7,57 +8,63 @@ import {
   Output,
 } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { Observable, Subscription } from 'rxjs';
-import { DBSearchState } from '../home-state.service';
+import { map, Observable, Subscription } from 'rxjs';
+import { ColumnDefinition } from '../home-facade.service';
 
 @Component({
   selector: 'app-home-column-filter',
   templateUrl: './home-column-filter.component.html',
   styleUrls: ['./home-column-filter.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeColumnFilterComponent implements OnInit, OnDestroy {
-  @Input() searchState$!: Observable<DBSearchState>;
-  @Output() columnFilterChange = new EventEmitter<string[]>();
-  panelOpenState = false;
-  // columns = ['Id', 'Physical Name', 'Alias Name', 'Project Name'];
+  @Input() columnsDefinition$!: Observable<ReadonlyArray<ColumnDefinition>>;
+  @Input() displayedColumn$!: Observable<string[]>;
+  @Output() displayedColumnsChanged = new EventEmitter<string[]>();
+  displayedColumnsSubscription!: Subscription;
+  columnsDefinitionSubscription!: Subscription;
+  allColumns!: ReadonlyArray<string>;
   displayedColumns!: string[];
-  subscription!: Subscription;
+  panelOpenState = false;
+
   constructor() {}
-  ngOnDestroy(): void {
-    // throw new Error('Method not implemented.');
-    this.subscription.unsubscribe();
-  }
-
   ngOnInit(): void {
-    this.subscription = this.searchState$.subscribe(
-      (x) => (this.displayedColumns = x.displayedColumns)
+    this.displayedColumnsSubscription = this.displayedColumn$.subscribe(
+      (x) => (this.displayedColumns = x)
+    );
+    this.columnsDefinitionSubscription = this.columnsDefinition$.subscribe(
+      (x) => (this.allColumns = x.map((y) => y.columnDef))
     );
   }
-
-  onFilterClick() {
-    console.log(
-      `event from filter component with data ${this.displayedColumns}`
-    );
-    // this.homeStateService.UpdateDisplayedColumns(this.columns);
-    // this.columnFilterChange.emit(this.displayedColumns);
-    console.log(`after emit`);
+  ngOnDestroy(): void {
+    this.displayedColumnsSubscription.unsubscribe();
+    this.columnsDefinitionSubscription.unsubscribe();
+  }
+  isCheck(columnName: string): boolean {
+    if (this.displayedColumns.includes(columnName)) {
+      return true;
+    }
+    return false;
   }
 
-  onToggleChange(change: MatSlideToggleChange) {
-    debugger;
+  determineColumnVisibility(change: MatSlideToggleChange) {
     const columnName = change.source.name;
-    const isColumnHidden = !change.checked;
-    if (isColumnHidden) {
-      this.displayedColumns = this.displayedColumns.filter(
-        (x) => x != columnName
-      );
-    } else {
+    const isColumnDisplayed = change.checked;
+    if (isColumnDisplayed) {
       if (columnName != null) {
         this.displayedColumns = [...this.displayedColumns, columnName];
       }
+    } else {
+      this.displayedColumns = this.displayedColumns.filter(
+        (x) => x != columnName
+      );
     }
-    this.columnFilterChange.emit(this.displayedColumns);
 
-    // console.log(change);
+    this.displayedColumnsChanged.emit(this.displayedColumns);
+  }
+
+  resetDisplayedColumns() {
+    this.displayedColumns = this.allColumns.map((x) => x);
+    this.displayedColumnsChanged.emit(this.displayedColumns);
   }
 }

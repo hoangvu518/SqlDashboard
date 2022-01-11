@@ -1,9 +1,9 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApiService, DbSearchService } from './services';
+import { DbSearchService } from './services';
 
 @NgModule({
-  providers: [ApiService, DbSearchService],
+  providers: [DbSearchService],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

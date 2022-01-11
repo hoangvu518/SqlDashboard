@@ -4,7 +4,7 @@ import { DBResult } from '@core/models/db-result.model';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { Observable, Subscription } from 'rxjs';
-import { DBSearchState } from '../home-state.service';
+//  import { DBSearchState } from '../home-state.service';
 
 @Component({
   selector: 'app-home-search-export',
@@ -12,7 +12,7 @@ import { DBSearchState } from '../home-state.service';
   styleUrls: ['./home-search-export.component.css'],
 })
 export class HomeSearchExportComponent implements OnInit, OnDestroy {
-  @Input() searchState$!: Observable<DBSearchState>;
+  // @Input() searchState$!: Observable<DBSearchState>;
   @Input() pdfData$!: Observable<DBResult[]>;
   // data!: DBResult[];
 
@@ -27,15 +27,15 @@ export class HomeSearchExportComponent implements OnInit, OnDestroy {
 
   // head = [['ID', 'Country', 'Rank', 'Capital']];
 
-  dataState!: DBSearchState;
+  // dataState!: DBSearchState;
 
   data!: DBResult[];
 
   ngOnInit(): void {
-    this.dataSubscription = this.pdfData$.subscribe((x) => (this.data = x));
-    this.stateSubscription = this.searchState$.subscribe(
-      (x) => (this.dataState = x)
-    );
+    // this.dataSubscription = this.pdfData$.subscribe((x) => (this.data = x));
+    // this.stateSubscription = this.searchState$.subscribe(
+    //   (x) => (this.dataState = x)
+    // );
   }
 
   private DeleteKeys(myObj: any, array: string[]) {
@@ -47,16 +47,16 @@ export class HomeSearchExportComponent implements OnInit, OnDestroy {
 
   exportPDF() {
     var doc = new jsPDF();
-    var head = [this.dataState.displayedColumns];
-    var hiddenColumns = this.dataState.hiddenColumns;
+    // var head = [this.dataState.displayedColumns];
+    // var hiddenColumns = this.dataState.hiddenColumns;
 
     let testData: any[];
     let myTableData: any[][] = [];
     this.data.forEach((x) => {
       let myObject = { ...x };
-      let finalObject = this.DeleteKeys(myObject, hiddenColumns);
-      let singleRowTableValue = Object.values(finalObject);
-      myTableData.push(singleRowTableValue);
+      // let finalObject = this.DeleteKeys(myObject, hiddenColumns);
+      // let singleRowTableValue = Object.values(finalObject);
+      // myTableData.push(singleRowTableValue);
     });
 
     var tableData = this.data.map((x) => Object.values(x));
@@ -68,7 +68,7 @@ export class HomeSearchExportComponent implements OnInit, OnDestroy {
     // doc.setTextColor(100);
 
     (doc as any).autoTable({
-      head: head,
+      // head: head,
       body: myTableData,
       // theme: 'plain',
       // didDrawCell: (data) => {

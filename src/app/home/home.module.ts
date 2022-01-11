@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HomeSearchComponent } from './home-search/home-search.component';
-import { HomeSearchResultComponent } from './home-search-result/home-search-result.component';
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomeColumnFilterComponent } from './home-column-filter/home-column-filter.component';
-import { HomeStateService } from './home-state.service';
+import { HomeFacadeService } from './home-facade.service';
+import { HomeRoutingModule } from './home-routing.module';
 import { HomeSearchExportComponent } from './home-search-export/home-search-export.component';
+import { HomeSearchResultComponent } from './home-search-result/home-search-result.component';
+import { HomeSearchComponent } from './home-search/home-search.component';
+import { HomeComponent } from './home.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +17,6 @@ import { HomeSearchExportComponent } from './home-search-export/home-search-expo
     HomeSearchExportComponent,
   ],
   imports: [HomeRoutingModule, SharedModule],
-  providers: [HomeStateService],
+  providers: [HomeFacadeService],
 })
 export class HomeModule {}
