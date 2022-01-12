@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of, shareReplay, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { DBResult } from '../models/db-result.model';
+import { Server } from '../models/server';
 
 // @Injectable({
 //   providedIn: 'root',
@@ -11,12 +11,16 @@ import { DBResult } from '../models/db-result.model';
 
 export interface DBResultDto {
   TotalCount: number;
-  Results: DBResult[];
+  Results: Server[];
 }
 
 export interface QueryParams {
   pageIndex: number;
   pageSize: number;
+  sortBy: string;
+  order: string;
+  filterBy: string;
+  filterValue: string;
 }
 @Injectable()
 export class DbSearchService {
@@ -39,11 +43,12 @@ export class DbSearchService {
   }
 
   findBy(params: QueryParams): Observable<DBResultDto> {
-    const start = params.pageIndex * params.pageSize;
-    const end = (params.pageIndex + 1) * params.pageSize;
-
+    // const start = params.pageIndex * params.pageSize;
+    // const end = (params.pageIndex + 1) * params.pageSize;
+    console.log(params);
+    const queryString = this.buildQuery(params);
     var response = this.http
-      .get(`${environment.api_url}/servers?_start=${start}&_end=${end}`, {
+      .get(`${environment.api_url}/servers?${queryString}`, {
         observe: 'response',
       })
       .pipe(
@@ -56,5 +61,16 @@ export class DbSearchService {
         shareReplay()
       );
     return response;
+  }
+
+  private buildQuery(params: QueryParams): string {
+    const start = params.pageIndex * params.pageSize;
+    const end = (params.pageIndex + 1) * params.pageSize;
+    let queryString = `_sort=${params.sortBy}&_order=${params.order}&_start=${start}&_end=${end}`;
+
+    if (params.filterBy != '' && params.filterValue != '') {
+      queryString = `${params.filterBy}_like=${params.filterValue}&${queryString}`;
+    }
+    return queryString;
   }
 }

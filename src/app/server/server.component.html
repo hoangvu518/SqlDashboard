@@ -1,0 +1,27 @@
+<div>
+  Displayed Columns:
+  <ng-container *ngFor="let item of displayedColumns$ | async">
+    {{ item }}
+  </ng-container>
+</div>
+
+<div>
+  All columns:
+  <ng-container *ngFor="let item of allColumn$ | async">
+    {{ item }}
+  </ng-container>
+</div>
+<div>
+  Query Params:
+  {{ queryParams$ | async | json }}
+</div>
+<app-server-column-filter
+  [columnsDefinition$]="columnsDefinition$"
+  [displayedColumn$]="displayedColumns$"
+  (displayedColumnsChanged)="changeDisplayedColumns($event)"
+></app-server-column-filter>
+<app-server-search
+  (filterColumnChanged)="changeColumnFilter($event)"
+  (filterValueChanged)="changeFilterValue($event)"
+></app-server-search>
+<app-server-table></app-server-table>

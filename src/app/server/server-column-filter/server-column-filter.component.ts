@@ -1,23 +1,23 @@
 import {
-  ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
   OnInit,
+  ChangeDetectionStrategy,
+  OnDestroy,
+  Input,
+  EventEmitter,
   Output,
 } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { map, Observable, Subscription } from 'rxjs';
-import { ColumnDefinition } from '../home-facade.service';
+import { Observable, Subscription } from 'rxjs';
+import { ColumnDefinition } from '../server-facade.service';
 
 @Component({
-  selector: 'app-home-column-filter',
-  templateUrl: './home-column-filter.component.html',
-  styleUrls: ['./home-column-filter.component.css'],
+  selector: 'app-server-column-filter',
+  templateUrl: './server-column-filter.component.html',
+  styleUrls: ['./server-column-filter.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeColumnFilterComponent implements OnInit, OnDestroy {
+export class ServerColumnFilterComponent implements OnInit, OnDestroy {
   @Input() columnsDefinition$!: Observable<ReadonlyArray<ColumnDefinition>>;
   @Input() displayedColumn$!: Observable<string[]>;
   @Output() displayedColumnsChanged = new EventEmitter<string[]>();

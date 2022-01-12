@@ -1,0 +1,114 @@
+<form
+  [formGroup]="editServerForm"
+  autocomplete="off"
+  novalidate
+  (ngSubmit)="submit()"
+>
+  <h1 mat-dialog-title>Edit Server</h1>
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="full-width">
+          <mat-label>Physical Name</mat-label>
+          <input
+            matInput
+            placeholder="Physical Name"
+            formControlName="PhysicalName"
+          />
+          <mat-error
+            *ngIf="editServerForm.controls['PhysicalName'].hasError('required')"
+          >
+            Physical Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="full-width">
+          <mat-label>Alias Name</mat-label>
+          <input
+            matInput
+            placeholder="Alias Name"
+            formControlName="AliasName"
+          />
+          <mat-error
+            *ngIf="editServerForm.controls['AliasName'].hasError('required')"
+          >
+            Alias Name Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="full-width">
+          <mat-label>Project Name</mat-label>
+          <input
+            matInput
+            placeholder="Project Name"
+            formControlName="ProjectName"
+          />
+          <mat-error
+            *ngIf="editServerForm.controls['ProjectName'].hasError('required')"
+          >
+            Project Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="full-width">
+          <!-- <mat-label>Status</mat-label>
+          <input matInput placeholder="Status" formControlName="Status" />
+          <mat-error
+            *ngIf="editServerForm.controls['Status'].hasError('required')"
+          >
+            Statusis <strong>required</strong>
+          </mat-error> -->
+          <mat-select formControlName="Status">
+            <mat-option [value]="1">Active</mat-option>
+            <mat-option [value]="2">Inactive</mat-option>
+            <mat-option [value]="3">Retired</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="full-width">
+          <mat-label>Version</mat-label>
+          <input matInput placeholder="Version" formControlName="Version" />
+          <mat-error
+            *ngIf="editServerForm.controls['Version'].hasError('required')"
+          >
+            Version is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="full-width">
+          <mat-label>Environment</mat-label>
+          <input
+            matInput
+            placeholder="Environment"
+            formControlName="Environment"
+          />
+          <mat-error
+            *ngIf="editServerForm.controls['Environment'].hasError('required')"
+          >
+            Environment is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="disabledSubmitButton"
+    >
+      Submit
+    </button>
+  </div>
+</form>

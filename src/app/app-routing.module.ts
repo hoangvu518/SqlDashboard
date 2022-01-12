@@ -4,7 +4,12 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+    loadChildren: () =>
+      import('./server/server.module').then((m) => m.ServerModule),
+  },
+  {
+    path: 'server',
+    redirectTo: '',
   },
   {
     path: 'admin',

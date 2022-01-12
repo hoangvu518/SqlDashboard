@@ -1,0 +1,25 @@
+.table-container {
+  max-width: 1200px;
+  overflow-x: auto;
+}
+:host {
+  display: block;
+}
+table {
+  width: 100%;
+}
+
+.button-row {
+  display: table-cell;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}

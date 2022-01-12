@@ -1,196 +1,722 @@
 {
+  "statuses": [
+    {
+      "Id": 1,
+      "Value": "Active"
+    },
+    {
+      "Id": 2,
+      "Value": "InActive"
+    },
+    {
+      "Id": 3,
+      "Value": "Retired"
+    }
+  ],
+  "environments": [
+    {
+      "Id": 1,
+      "Value": "Development"
+    },
+    {
+      "Id": 2,
+      "Value": "Test"
+    },
+    {
+      "Id": 3,
+      "Value": "Acceptance"
+    },
+    {
+      "Id": 4,
+      "Value": "Prod"
+    }
+  ],
+  "sqlVersions": [
+    {
+      "Id": 1,
+      "Value": "2014"
+    },
+    {
+      "Id": 2,
+      "Value": "2016"
+    },
+    {
+      "Id": 3,
+      "Value": "2017"
+    }
+  ],
   "servers": [
     {
       "Id": 1,
       "PhysicalName": "FD123",
       "AliasName": "AuditSQLDEV",
-      "ProjectName": "VRC"
+      "ProjectName": "VRC",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 2,
       "PhysicalName": "FD124",
       "AliasName": "AuditSQLUAT",
-      "ProjectName": "VRC"
+      "ProjectName": "VRC",
+      "Status": {
+        "Id": 2,
+        "Value": "Inactive"
+      },
+      "SQLVersion": {
+        "Id": 2,
+        "Value": "2016"
+      },
+      "Environment": {
+        "Id": 2,
+        "Value": "Test"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 3,
       "PhysicalName": "FD125",
       "AliasName": "AuditSQLTest",
-      "ProjectName": "VRC"
+      "ProjectName": "VRC",
+      "Status": {
+        "Id": 3,
+        "Value": "Retired"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 3,
+        "Value": "Acceptance"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 4,
       "PhysicalName": "FD126",
       "AliasName": "AuditSQLProd",
-      "ProjectName": "VRC"
+      "ProjectName": "VRC",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 3,
+        "Value": "2017"
+      },
+      "Environment": {
+        "Id": 4,
+        "Value": "Prod"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 5,
       "PhysicalName": "FD127",
       "AliasName": "PACTDEV",
-      "ProjectName": "PACT"
+      "ProjectName": "PACT",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 6,
       "PhysicalName": "FD128",
       "AliasName": "PACTUAT",
-      "ProjectName": "PACT"
+      "ProjectName": "PACT",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 7,
       "PhysicalName": "FD129",
       "AliasName": "PACTTest",
-      "ProjectName": "PACT"
+      "ProjectName": "PACT",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 8,
       "PhysicalName": "FD223",
       "AliasName": "PACTProd",
-      "ProjectName": "PACT"
+      "ProjectName": "PACT",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 9,
       "PhysicalName": "FD224",
       "AliasName": "AuditSQLDEV",
-      "ProjectName": "VRC"
+      "ProjectName": "VRC",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 10,
       "PhysicalName": "FD225",
       "AliasName": "IWASDEV",
-      "ProjectName": "IWAS"
+      "ProjectName": "IWAS",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 11,
       "PhysicalName": "FD226",
       "AliasName": "IWASUAT",
-      "ProjectName": "IWAS"
+      "ProjectName": "IWAS",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 12,
       "PhysicalName": "FD227",
       "AliasName": "IWASTest",
-      "ProjectName": "IWAS"
+      "ProjectName": "IWAS",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 13,
       "PhysicalName": "FD228",
       "AliasName": "IWASProd",
-      "ProjectName": "IWAS"
+      "ProjectName": "IWAS",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 14,
       "PhysicalName": "FD229",
       "AliasName": "WASSDEV",
-      "ProjectName": "WASS"
+      "ProjectName": "WASS",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 15,
       "PhysicalName": "FD330",
       "AliasName": "WASSUAT",
-      "ProjectName": "WASS"
+      "ProjectName": "WASS",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 16,
       "PhysicalName": "FD331",
       "AliasName": "WASSTest",
-      "ProjectName": "WASS"
+      "ProjectName": "WASS",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 17,
       "PhysicalName": "FD332",
       "AliasName": "WASSProd",
-      "ProjectName": "WASS"
+      "ProjectName": "WASS",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 18,
       "PhysicalName": "FD333",
       "AliasName": "ETimeDEV",
-      "ProjectName": "ETime"
+      "ProjectName": "ETime",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 19,
       "PhysicalName": "FD334",
       "AliasName": "ETimeTest",
-      "ProjectName": "ETime"
+      "ProjectName": "ETime",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 20,
       "PhysicalName": "FD335",
       "AliasName": "ETimeProd",
-      "ProjectName": "ETime"
+      "ProjectName": "ETime",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 21,
       "PhysicalName": "FD336",
       "AliasName": "EGateDev",
-      "ProjectName": "EGate"
+      "ProjectName": "EGate",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 22,
       "PhysicalName": "FD337",
       "AliasName": "EGateTest",
-      "ProjectName": "EGate"
+      "ProjectName": "EGate",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 23,
       "PhysicalName": "FD338",
       "AliasName": "EGateUAT",
-      "ProjectName": "EGate"
+      "ProjectName": "EGate",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 24,
       "PhysicalName": "FD339",
       "AliasName": "EGatePROD",
-      "ProjectName": "EGate"
+      "ProjectName": "EGate",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 25,
       "PhysicalName": "FD440",
       "AliasName": "DB2Dev",
-      "ProjectName": "DB2"
+      "ProjectName": "DB2",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 26,
       "PhysicalName": "FD441",
       "AliasName": "DB2Prod",
-      "ProjectName": "DB2"
+      "ProjectName": "DB2",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 27,
       "PhysicalName": "FD442",
       "AliasName": "DB2UAT",
-      "ProjectName": "DB2"
+      "ProjectName": "DB2",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 28,
       "PhysicalName": "FD443",
       "AliasName": "DB2Test",
-      "ProjectName": "DB2"
+      "ProjectName": "DB2",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 29,
       "PhysicalName": "FD444",
       "AliasName": "FTBNET2Dev",
-      "ProjectName": "FTBNET2"
+      "ProjectName": "FTBNET2",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 30,
       "PhysicalName": "FD445",
       "AliasName": "FTBNET2PreProd",
-      "ProjectName": "FTBNET2"
+      "ProjectName": "FTBNET2",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 31,
       "PhysicalName": "FD446",
       "AliasName": "FTBNET2Prod",
-      "ProjectName": "FTBNET2"
+      "ProjectName": "FTBNET2",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     },
     {
       "Id": 32,
       "PhysicalName": "FD446",
       "AliasName": "FTBNET2Prod",
-      "ProjectName": "FTBNET2"
+      "ProjectName": "FTBNET2",
+      "Status": {
+        "Id": 1,
+        "Value": "Active"
+      },
+      "SQLVersion": {
+        "Id": 1,
+        "Value": "2014"
+      },
+      "Environment": {
+        "Id": 1,
+        "Value": "Development"
+      },
+      "DBASupporters": ["DBA1", "DBA2", "DBA3"],
+      "SMSSupporters": ["SMS1", "SMS2"],
+      "BusinessOwners": ["Owner1, Owner2"]
     }
   ]
 }

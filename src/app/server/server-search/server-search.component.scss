@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+form {
+  display: flex;
+}
+#input {
+  width: 100%;
+}
+
+mat-form-field:nth-last-of-type(1) {
+  flex-grow: 1;
+}

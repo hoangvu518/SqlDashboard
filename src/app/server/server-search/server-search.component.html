@@ -1,0 +1,22 @@
+<form autocomplete="off">
+  <mat-form-field appearance="standard">
+    <mat-select
+      [formControl]="searchOption"
+      (selectionChange)="updateFilterBy($event)"
+    >
+      <mat-option value="PhysicalName">Physical Name</mat-option>
+      <mat-option value="AliasName">Alias Name</mat-option>
+      <mat-option value="ProjectName">Project Name</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div style="margin-right: 1rem"></div>
+  <mat-form-field appearance="standard">
+    <mat-label>Search</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter(searchBox.value)"
+      [placeholder]="placeHolder"
+      #searchBox
+    />
+  </mat-form-field>
+</form>
