@@ -1,15 +1,10 @@
-import { query } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, of, shareReplay, switchMap, tap } from 'rxjs';
+import { Observable, of, shareReplay, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Server } from '../models/server';
 
-// @Injectable({
-//   providedIn: 'root',
-// })
-
-export interface DBResultDto {
+export interface ServerResultDto {
   TotalCount: number;
   Results: Server[];
 }
@@ -23,29 +18,26 @@ export interface QueryParams {
   filterValue: string;
 }
 @Injectable()
-export class DbSearchService {
+export class ServerService {
   constructor(private http: HttpClient) {}
-  getAll(): Observable<DBResultDto> {
-    var response = this.http
-      .get(`${environment.api_url}/servers?_start=20&_end=30`, {
-        observe: 'response',
-      })
-      .pipe(
-        switchMap((x) =>
-          of({
-            TotalCount: x.headers.get('X-Total-Count') ?? 0,
-            Results: x.body,
-          } as DBResultDto)
-        ),
-        shareReplay()
-      );
-    return response;
-  }
+  // getAll(): Observable<ServerResultDto> {
+  //   var response = this.http
+  //     .get(`${environment.api_url}/servers?_start=20&_end=30`, {
+  //       observe: 'response',
+  //     })
+  //     .pipe(
+  //       switchMap((x) =>
+  //         of({
+  //           TotalCount: x.headers.get('X-Total-Count') ?? 0,
+  //           Results: x.body,
+  //         } as ServerResultDto)
+  //       ),
+  //       shareReplay()
+  //     );
+  //   return response;
+  // }
 
-  findBy(params: QueryParams): Observable<DBResultDto> {
-    // const start = params.pageIndex * params.pageSize;
-    // const end = (params.pageIndex + 1) * params.pageSize;
-    console.log(params);
+  findBy(params: QueryParams): Observable<ServerResultDto> {
     const queryString = this.buildQuery(params);
     var response = this.http
       .get(`${environment.api_url}/servers?${queryString}`, {
@@ -56,9 +48,9 @@ export class DbSearchService {
           of({
             TotalCount: x.headers.get('X-Total-Count') ?? 0,
             Results: x.body,
-          } as DBResultDto)
+          } as ServerResultDto)
         ),
-        shareReplay()
+        shareReplay(1)
       );
     return response;
   }

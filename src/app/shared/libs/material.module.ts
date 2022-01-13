@@ -33,7 +33,7 @@ import {
   providers: [
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
-      useValue: { minWidth: '600px', hasBackdrop: true },
+      useValue: { minWidth: '600px', hasBackdrop: true, autoFocus: true },
     },
   ],
 })

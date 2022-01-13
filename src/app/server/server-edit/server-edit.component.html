@@ -57,24 +57,25 @@
     <div class="row">
       <div class="col">
         <mat-form-field class="full-width">
-          <!-- <mat-label>Status</mat-label>
-          <input matInput placeholder="Status" formControlName="Status" />
+          <mat-select formControlName="Status">
+            <ng-container *ngFor="let item of serverStatuses | async">
+              <mat-option [value]="item.Id">{{ item.Value }}</mat-option>
+            </ng-container>
+          </mat-select>
           <mat-error
             *ngIf="editServerForm.controls['Status'].hasError('required')"
           >
-            Statusis <strong>required</strong>
-          </mat-error> -->
-          <mat-select formControlName="Status">
-            <mat-option [value]="1">Active</mat-option>
-            <mat-option [value]="2">Inactive</mat-option>
-            <mat-option [value]="3">Retired</mat-option>
-          </mat-select>
+            Status is <strong>required</strong>
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="col">
         <mat-form-field class="full-width">
-          <mat-label>Version</mat-label>
-          <input matInput placeholder="Version" formControlName="Version" />
+          <mat-select formControlName="Version">
+            <ng-container *ngFor="let item of serverVersions | async">
+              <mat-option [value]="item.Id">{{ item.Value }}</mat-option>
+            </ng-container>
+          </mat-select>
           <mat-error
             *ngIf="editServerForm.controls['Version'].hasError('required')"
           >
@@ -84,12 +85,11 @@
       </div>
       <div class="col">
         <mat-form-field class="full-width">
-          <mat-label>Environment</mat-label>
-          <input
-            matInput
-            placeholder="Environment"
-            formControlName="Environment"
-          />
+          <mat-select formControlName="Environment">
+            <ng-container *ngFor="let item of serverEnvironments | async">
+              <mat-option [value]="item.Id">{{ item.Value }}</mat-option>
+            </ng-container>
+          </mat-select>
           <mat-error
             *ngIf="editServerForm.controls['Environment'].hasError('required')"
           >

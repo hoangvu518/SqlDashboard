@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { QueryParams } from '@core/services';
-import { Observable, Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Environment, SQLVersion, Status } from '@core/models';
+import { Server } from '@core/models/server';
+import { ServerResultDto, QueryParams } from '@core/services';
+import { Observable, Subscription, switchMap } from 'rxjs';
 import {
   ColumnDefinition,
   ServerFacadeService,
@@ -12,40 +14,58 @@ import {
   templateUrl: './server.component.html',
   styleUrls: ['./server.component.scss'],
 })
-export class ServerComponent implements OnInit {
+export class ServerComponent implements OnInit, OnDestroy {
+  servers!: Server[];
+  serverCount!: number;
+  // serverCount$!: Observable<number>;
   displayedColumns$!: Observable<string[]>;
-  allColumn$!: Observable<ReadonlyArray<string>>;
-  columnsDefinition$!: Observable<ReadonlyArray<ColumnDefinition>>;
+  allColumn$!: Observable<string[]>;
+  columnsDefinition$!: Observable<ColumnDefinition[]>;
   queryParams$!: Observable<QueryParams>;
-  queryParam!: QueryParams;
   state$!: Observable<State>;
+
   subscription!: Subscription;
-  constructor(private databaseFacadeService: ServerFacadeService) {}
+  constructor(private serverFacadeService: ServerFacadeService) {}
+
+  ngOnInit(): void {
+    this.state$ = this.serverFacadeService.state$;
+    this.displayedColumns$ = this.serverFacadeService.displayedColumns$;
+    this.allColumn$ = this.serverFacadeService.allColumns$;
+    this.columnsDefinition$ = this.serverFacadeService.columnsDefinition$;
+    this.queryParams$ = this.serverFacadeService.queryParams$;
+
+    this.subscription = this.queryParams$
+      .pipe(switchMap((x) => this.serverFacadeService.getServersAndCount()))
+      .subscribe((x) => {
+        this.servers = x.Results;
+        this.serverCount = x.TotalCount;
+      });
+    // this.serverCount$ = this.serverFacadeService.getServerCount();
+  }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
-  ngOnInit(): void {
-    this.state$ = this.databaseFacadeService.state$;
-    this.displayedColumns$ = this.databaseFacadeService.displayedColumns$;
-    this.allColumn$ = this.databaseFacadeService.allColumns$;
-    this.columnsDefinition$ = this.databaseFacadeService.columnsDefinition$;
-    this.queryParams$ = this.databaseFacadeService.queryParams$;
-
-    this.subscription = this.databaseFacadeService.queryParams$.subscribe(
-      (x) => (this.queryParam = x)
+  changeDisplayedColumns(columnDefObj: ColumnDefinition) {
+    this.serverFacadeService.changeDisplayedColumn(
+      columnDefObj.columnDef,
+      columnDefObj.isDisplayed
     );
   }
 
-  changeDisplayedColumns(displayedColumns: string[]) {
-    this.databaseFacadeService.changeDisplayedColumns(displayedColumns);
+  resetDisplayedColumns() {
+    this.serverFacadeService.resetDisplayedColumns();
   }
 
-  changeColumnFilter(data: string) {
-    this.databaseFacadeService.updateFilterBy(data);
+  updatePageIndex(pageIndex: number) {
+    this.serverFacadeService.updatePageIndex(pageIndex);
   }
 
-  changeFilterValue(data: string) {
-    this.databaseFacadeService.updateFilterValue(data);
+  updateColumnFilter(data: string) {
+    this.serverFacadeService.updateFilterBy(data);
+  }
+
+  updateSearchValue(data: string) {
+    this.serverFacadeService.updateSearchValue(data);
   }
 }

@@ -5,7 +5,6 @@
   <mat-expansion-panel-header>
     <mat-panel-title> Click to filter columns </mat-panel-title>
   </mat-expansion-panel-header>
-  <!-- <p>I'm visible because I am open</p> -->
   <div class="expansion-panel-container">
     <button mat-raised-button color="primary" (click)="resetDisplayedColumns()">
       Reset
@@ -13,9 +12,9 @@
     <div class="mb-1"></div>
     <ng-container *ngFor="let column of columnsDefinition$ | async">
       <mat-slide-toggle
-        [checked]="isCheck(column.columnDef)"
+        [checked]="column.isDisplayed"
         [name]="column.columnDef"
-        (change)="determineColumnVisibility($event)"
+        (change)="changeColumnDisplay($event)"
       >
         {{ column.header }}
       </mat-slide-toggle>
