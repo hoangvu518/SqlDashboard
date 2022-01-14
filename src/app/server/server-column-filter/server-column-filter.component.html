@@ -32,47 +32,45 @@
   <!-- <mat-icon fontSet="fa" fontIcon="alarm"></mat-icon> -->
 </button>
 <!-- <button mat-button [matMenuTriggerFor]="menu">Filter Columns</button> -->
-<mat-menu #menu="matMenu">
-  <form autocomplete="off" novalidate (click)="$event.stopPropagation()">
-    <div class="form-container">
-      <section>
-        <span class="list-section">
-          <mat-checkbox
-            class="margin"
-            [checked]="isAllChecked()"
-            color="primary"
-            [indeterminate]="isSomeChecked()"
-            (change)="checkAll($event.checked)"
-          >
-            Select All
-          </mat-checkbox>
-        </span>
-        <span class="list-section">
-          <ul>
-            <li *ngFor="let column of columnsDefinition">
-              <mat-checkbox
-                [(ngModel)]="column.isDisplayed"
-                color="primary"
-                [ngModelOptions]="{ standalone: true }"
-                (change)="updateColumnDisplay($event)"
-                [name]="column.columnDef"
-              >
-                {{ column.header }}
-              </mat-checkbox>
-            </li>
-          </ul>
-        </span>
-      </section>
-      <mat-divider></mat-divider>
-      <div class="button-container">
-        <button
-          mat-raised-button
+<mat-menu #menu="matMenu" [class]="'column-filter-menu'">
+  <div class="mat-menu-container" (click)="$event.stopPropagation()">
+    <section>
+      <span class="list-section">
+        <mat-checkbox
+          class="margin"
+          [checked]="isAllChecked()"
           color="primary"
-          (click)="hideAllDisplayedColumns()"
+          [indeterminate]="isSomeChecked()"
+          (change)="checkAll($event.checked)"
         >
-          Clear All
-        </button>
-      </div>
+          Select All
+        </mat-checkbox>
+      </span>
+      <span class="list-section">
+        <ul>
+          <li *ngFor="let column of columnsDefinition">
+            <mat-checkbox
+              [(ngModel)]="column.isDisplayed"
+              color="primary"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="updateColumnDisplay($event)"
+              [name]="column.columnDef"
+            >
+              {{ column.header }}
+            </mat-checkbox>
+          </li>
+        </ul>
+      </span>
+    </section>
+    <mat-divider></mat-divider>
+    <div class="button-container">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="hideAllDisplayedColumns()"
+      >
+        Clear All
+      </button>
     </div>
-  </form>
+  </div>
 </mat-menu>

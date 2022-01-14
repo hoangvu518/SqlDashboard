@@ -14,15 +14,39 @@
     >
       Home
     </a>
-    <a mat-button routerLink="/admin" routerLinkActive="active"> Admin </a>
+    <a
+      *ngIf="userHasAdminAccess$ | async"
+      mat-button
+      routerLink="/admin"
+      routerLinkActive="active"
+    >
+      Admin
+    </a>
     <div class="spacer"></div>
     <button mat-button [matMenuTriggerFor]="menu">
       Impersonate
       <mat-icon>expand_more</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>Regular User</button>
-      <button mat-menu-item>Admin</button>
+    <mat-menu #menu="matMenu" [class]="'user-role-menu'">
+      <div class="mat-menu-container" (click)="$event.stopPropagation()">
+        <ul>
+          <li *ngFor="let role of userRoles$ | async">
+            <mat-checkbox
+              color="primary"
+              (change)="updateUserRole($event)"
+              [name]="role.applicationRole"
+              [checked]="role.isUserInThisRole"
+            >
+              {{ role.applicationRole.toString() }}
+            </mat-checkbox>
+          </li>
+        </ul>
+        <!-- <button mat-menu-item *ngFor="let role of applicationRoles$ | async">
+        {{ role.toString() }}
+      </button> -->
+        <!-- <button mat-menu-item>Regular User</button>
+        <button mat-menu-item>Admin</button> -->
+      </div>
     </mat-menu>
     <button
       mat-icon-button

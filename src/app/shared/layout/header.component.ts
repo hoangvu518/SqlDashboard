@@ -1,6 +1,14 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { AuthService, ThemeService } from '@core/services';
+import {
+  ApplicationRole,
+  AuthService,
+  AuthState,
+  ThemeService,
+  UserRole,
+} from '@core/services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -8,11 +16,17 @@ import { AuthService, ThemeService } from '@core/services';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  userRoles$!: Observable<UserRole[]>;
+  userHasAdminAccess$!: Observable<boolean>;
+
   constructor(
     private themeService: ThemeService,
     private authService: AuthService,
     private renderer: Renderer2
-  ) {}
+  ) {
+    this.userRoles$ = this.authService.userRoles$;
+    this.userHasAdminAccess$ = this.authService.isUserAdmin$;
+  }
 
   lightTheme = 'light-theme';
   darkTheme = 'dark-theme';
@@ -46,5 +60,11 @@ export class HeaderComponent implements OnInit {
       this.themeService.setTheme(this.lightTheme);
       this.renderer.removeClass(document.body, this.darkTheme);
     }
+  }
+
+  updateUserRole(event: MatCheckboxChange) {
+    const isUserInThisRole = event.checked;
+    const role = event.source.name as ApplicationRole;
+    this.authService.updateUserRole(role, isUserInThisRole);
   }
 }

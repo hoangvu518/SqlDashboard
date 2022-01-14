@@ -15,6 +15,10 @@
   Query Params:
   {{ queryParams$ | async | json }}
 </div>
+<div>
+  User Roles:
+  {{ userRoles$ | async | json }}
+</div>
 <div class="row">
   <app-server-column-filter
     [columnsDefinition$]="columnsDefinition$"
@@ -34,6 +38,7 @@
     [servers]="servers"
     [columnsDefinition$]="columnsDefinition$"
     [displayedColumns$]="displayedColumns$"
+    [userHasWriteAccess$]="userHasWriteAccess$"
   ></app-server-table>
 
   <app-server-paginator

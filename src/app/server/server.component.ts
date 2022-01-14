@@ -1,7 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Environment, SQLVersion, Status } from '@core/models';
 import { Server } from '@core/models/server';
-import { ServerResultDto, QueryParams } from '@core/services';
+import {
+  ServerResultDto,
+  QueryParams,
+  AuthService,
+  UserRole,
+} from '@core/services';
 import { BehaviorSubject, Observable, Subscription, switchMap } from 'rxjs';
 import {
   ColumnDefinition,
@@ -22,18 +27,27 @@ export class ServerComponent implements OnInit, OnDestroy {
   allColumn$!: Observable<string[]>;
   columnsDefinition$!: Observable<ColumnDefinition[]>;
   queryParams$!: Observable<QueryParams>;
-  state$!: Observable<State>;
+  featureState$!: Observable<State>;
+
+  userHasWriteAccess$!: Observable<boolean>;
+
+  userRoles$!: Observable<UserRole[]>;
 
   queryParamsSubscription!: Subscription;
   updatedServerSubscription!: Subscription;
-  constructor(private serverFacadeService: ServerFacadeService) {}
+  constructor(
+    private serverFacadeService: ServerFacadeService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.state$ = this.serverFacadeService.state$;
+    this.featureState$ = this.serverFacadeService.state$;
     this.displayedColumns$ = this.serverFacadeService.displayedColumns$;
     this.allColumn$ = this.serverFacadeService.allColumns$;
     this.columnsDefinition$ = this.serverFacadeService.columnsDefinition$;
     this.queryParams$ = this.serverFacadeService.queryParams$;
+    this.userHasWriteAccess$ = this.authService.isUserWrite$;
+    this.userRoles$ = this.authService.userRoles$;
 
     this.queryParamsSubscription = this.queryParams$
       .pipe(switchMap((x) => this.serverFacadeService.getServersAndCount()))

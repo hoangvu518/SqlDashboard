@@ -11,6 +11,7 @@
         <div class="button-row">
           <div class="flex-container">
             <button
+              *ngIf="userHasWriteAccess$ | async"
               mat-icon-button
               matTooltip="Edit server"
               matTooltipPosition="below"

@@ -17,6 +17,7 @@ export class ServerTableComponent {
   @Input() servers!: Server[];
   @Input() columnsDefinition$!: Observable<ColumnDefinition[]>;
   @Input() displayedColumns$!: Observable<string[]>;
+  @Input() userHasWriteAccess$!: Observable<boolean>;
 
   constructor(private dialog: MatDialog) {}
   openEditDialog(server: Server) {
