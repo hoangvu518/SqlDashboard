@@ -1,10 +1,21 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ServerService } from './services';
+import {
+  AuthService,
+  LocalStorageService,
+  ServerService,
+  ThemeService,
+} from './services';
 import { LookupService } from './services';
 
 @NgModule({
-  providers: [ServerService, LookupService],
+  providers: [
+    ServerService,
+    LookupService,
+    LocalStorageService,
+    ThemeService,
+    AuthService,
+  ],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
