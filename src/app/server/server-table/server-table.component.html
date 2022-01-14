@@ -12,6 +12,8 @@
           <div class="flex-container">
             <button
               mat-icon-button
+              matTooltip="Edit server"
+              matTooltipPosition="below"
               color="primary"
               aria-label="edit server"
               (click)="openEditDialog(row)"
@@ -20,15 +22,21 @@
             </button>
             <button
               mat-icon-button
+              matTooltip="View server detail"
+              matTooltipPosition="below"
               color="primary"
               aria-label="view server information"
+              (click)="openDetailDialog(row)"
             >
               <mat-icon>info</mat-icon>
             </button>
             <button
               mat-icon-button
               color="primary"
+              matTooltip="View server change history"
+              matTooltipPosition="below"
               aria-label="view server change history"
+              (click)="openHistoryDialog(row)"
             >
               <mat-icon>history</mat-icon>
             </button>

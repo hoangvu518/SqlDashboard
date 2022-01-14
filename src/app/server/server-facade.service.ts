@@ -3,7 +3,13 @@ import { Environment, SQLVersion, Status } from '@core/models';
 import { Server } from '@core/models/server';
 import { ServerResultDto, ServerService, QueryParams } from '@core/services';
 import { LookupService } from '@core/services/lookup.service';
-import { BehaviorSubject, Observable, shareReplay, switchMap } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  shareReplay,
+  Subject,
+  switchMap,
+} from 'rxjs';
 export interface ColumnDefinition {
   columnDef: string;
   header: string;
@@ -99,6 +105,7 @@ const initialState = {
 export class ServerFacadeService {
   private _state = initialState;
   private _state$ = new BehaviorSubject<State>(this._state);
+  private _updatedServer$ = new Subject<Server>();
 
   get state$() {
     return this._state$.asObservable().pipe(shareReplay(1));
@@ -124,6 +131,17 @@ export class ServerFacadeService {
     );
   }
 
+  get hiddenColumns$() {
+    return this._state$.pipe(
+      switchMap((x) => {
+        let hiddenColumns = x.columnsDefinition
+          .filter((x) => x.isDisplayed == false)
+          .map((x) => x.columnDef);
+        return new BehaviorSubject(hiddenColumns);
+      })
+    );
+  }
+
   get columnsDefinition$() {
     return this._state$.pipe(
       switchMap((x) => new BehaviorSubject(x.columnsDefinition))
@@ -134,6 +152,10 @@ export class ServerFacadeService {
     return this._state$.pipe(
       switchMap((x) => new BehaviorSubject(x.queryParams))
     );
+  }
+
+  get updatedServer$() {
+    return this._updatedServer$.asObservable();
   }
 
   constructor(
@@ -147,6 +169,9 @@ export class ServerFacadeService {
     return this.dbSearchService.findBy(params).pipe(shareReplay(1));
   }
 
+  getPDFData(): Observable<Server[]> {
+    return this.dbSearchService.getPDF(this._state.queryParams);
+  }
   getServersAndCount() {
     return this.getServersAndCountBy(this._state.queryParams).pipe(
       shareReplay(1)
@@ -191,9 +216,19 @@ export class ServerFacadeService {
     this._state$.next(this._state);
   }
 
+  updateTableRow(row: Server) {
+    this._updatedServer$.next(row);
+  }
   resetDisplayedColumns() {
     this._state.columnsDefinition.forEach((columnDef) => {
       columnDef.isDisplayed = true;
+    });
+    this._state$.next(this._state);
+  }
+
+  hideAllDisplayedColumns() {
+    this._state.columnsDefinition.forEach((columnDef) => {
+      columnDef.isDisplayed = false;
     });
     this._state$.next(this._state);
   }

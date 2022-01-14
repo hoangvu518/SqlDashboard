@@ -15,11 +15,16 @@
   Query Params:
   {{ queryParams$ | async | json }}
 </div>
-<app-server-column-filter
-  [columnsDefinition$]="columnsDefinition$"
-  (displayedColumnsChanged)="changeDisplayedColumns($event)"
-  (displayedColumnsReset)="resetDisplayedColumns()"
-></app-server-column-filter>
+<div class="row">
+  <app-server-column-filter
+    [columnsDefinition$]="columnsDefinition$"
+    (displayedColumnsChanged)="changeDisplayedColumns($event)"
+    (displayedColumnsReset)="resetDisplayedColumns()"
+    (displayedColumnsHiddenAll)="hideAllDisplayedColumns()"
+  ></app-server-column-filter>
+  <div class="spacer"></div>
+  <app-server-export-pdf></app-server-export-pdf>
+</div>
 <app-server-search
   (filterColumnChanged)="updateColumnFilter($event)"
   (filterValueChanged)="updateSearchValue($event)"

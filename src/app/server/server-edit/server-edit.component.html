@@ -1,9 +1,4 @@
-<form
-  [formGroup]="editServerForm"
-  autocomplete="off"
-  novalidate
-  (ngSubmit)="submit()"
->
+<form [formGroup]="editServerForm" autocomplete="off" (ngSubmit)="submit()">
   <h1 mat-dialog-title>Edit Server</h1>
   <div mat-dialog-content>
     <div class="row">
@@ -57,13 +52,13 @@
     <div class="row">
       <div class="col">
         <mat-form-field class="full-width">
-          <mat-select formControlName="Status">
-            <ng-container *ngFor="let item of serverStatuses | async">
+          <mat-select formControlName="StatusId">
+            <ng-container *ngFor="let item of serverStatuses">
               <mat-option [value]="item.Id">{{ item.Value }}</mat-option>
             </ng-container>
           </mat-select>
           <mat-error
-            *ngIf="editServerForm.controls['Status'].hasError('required')"
+            *ngIf="editServerForm.controls['StatusId'].hasError('required')"
           >
             Status is <strong>required</strong>
           </mat-error>
@@ -71,13 +66,13 @@
       </div>
       <div class="col">
         <mat-form-field class="full-width">
-          <mat-select formControlName="Version">
-            <ng-container *ngFor="let item of serverVersions | async">
+          <mat-select formControlName="VersionId">
+            <ng-container *ngFor="let item of serverVersions">
               <mat-option [value]="item.Id">{{ item.Value }}</mat-option>
             </ng-container>
           </mat-select>
           <mat-error
-            *ngIf="editServerForm.controls['Version'].hasError('required')"
+            *ngIf="editServerForm.controls['VersionId'].hasError('required')"
           >
             Version is <strong>required</strong>
           </mat-error>
@@ -85,13 +80,15 @@
       </div>
       <div class="col">
         <mat-form-field class="full-width">
-          <mat-select formControlName="Environment">
-            <ng-container *ngFor="let item of serverEnvironments | async">
+          <mat-select formControlName="EnvironmentId">
+            <ng-container *ngFor="let item of serverEnvironments">
               <mat-option [value]="item.Id">{{ item.Value }}</mat-option>
             </ng-container>
           </mat-select>
           <mat-error
-            *ngIf="editServerForm.controls['Environment'].hasError('required')"
+            *ngIf="
+              editServerForm.controls['EnvironmentId'].hasError('required')
+            "
           >
             Environment is <strong>required</strong>
           </mat-error>

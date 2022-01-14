@@ -1,7 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ServerService } from './services';
-import { LookupService } from './services/lookup.service';
+import { LookupService } from './services';
 
 @NgModule({
   providers: [ServerService, LookupService],

@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Server details</h1>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col">
+      <b>Physical Name:</b>
+      {{ data.PhysicalName }}
+    </div>
+    <div class="col">
+      <b>Alias Name:</b>
+      {{ data.AliasName }}
+    </div>
+    <div class="col">
+      <b>Project Name:</b>
+      {{ data.ProjectName }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <b>Status:</b>
+      {{ data.Status.Value }}
+    </div>
+    <div class="col">
+      <b>Environment:</b>
+      {{ data.Environment.Value }}
+    </div>
+    <div class="col">
+      <b>Version:</b>
+      {{ data.SQLVersion.Value }}
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>

@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Server } from '@core/models/server';
 import { Observable } from 'rxjs';
+import { ServerChangeTrackingComponent } from '../server-change-tracking/server-change-tracking.component';
+import { ServerDetailComponent } from '../server-detail/server-detail.component';
 import { ServerEditComponent } from '../server-edit/server-edit.component';
 import { ColumnDefinition } from '../server-facade.service';
 
@@ -21,5 +23,12 @@ export class ServerTableComponent {
     this.dialog.open(ServerEditComponent, {
       data: server,
     });
+  }
+
+  openDetailDialog(server: Server) {
+    this.dialog.open(ServerDetailComponent, { data: server });
+  }
+  openHistoryDialog(server: Server) {
+    this.dialog.open(ServerChangeTrackingComponent, { data: server });
   }
 }

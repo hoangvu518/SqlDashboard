@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Environment, SQLVersion, Status } from '@core/models';
 import { Server } from '@core/models/server';
 import { ServerResultDto, QueryParams } from '@core/services';
-import { Observable, Subscription, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, switchMap } from 'rxjs';
 import {
   ColumnDefinition,
   ServerFacadeService,
@@ -24,7 +24,8 @@ export class ServerComponent implements OnInit, OnDestroy {
   queryParams$!: Observable<QueryParams>;
   state$!: Observable<State>;
 
-  subscription!: Subscription;
+  queryParamsSubscription!: Subscription;
+  updatedServerSubscription!: Subscription;
   constructor(private serverFacadeService: ServerFacadeService) {}
 
   ngOnInit(): void {
@@ -34,23 +35,41 @@ export class ServerComponent implements OnInit, OnDestroy {
     this.columnsDefinition$ = this.serverFacadeService.columnsDefinition$;
     this.queryParams$ = this.serverFacadeService.queryParams$;
 
-    this.subscription = this.queryParams$
+    this.queryParamsSubscription = this.queryParams$
       .pipe(switchMap((x) => this.serverFacadeService.getServersAndCount()))
       .subscribe((x) => {
         this.servers = x.Results;
         this.serverCount = x.TotalCount;
       });
-    // this.serverCount$ = this.serverFacadeService.getServerCount();
+
+    this.updatedServerSubscription =
+      this.serverFacadeService.updatedServer$.subscribe((x) => {
+        const tempServers = this.servers;
+        if (x != null) {
+          let updatedServer = this.servers.find((s) => s.Id == x.Id);
+          if (updatedServer == null) {
+            return;
+          }
+          let updatedServerIndex = this.servers.findIndex((s) => s.Id == x.Id);
+          tempServers[updatedServerIndex] = x;
+          this.servers = [...tempServers];
+        }
+      });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.queryParamsSubscription.unsubscribe();
+    this.updatedServerSubscription.unsubscribe();
   }
   changeDisplayedColumns(columnDefObj: ColumnDefinition) {
     this.serverFacadeService.changeDisplayedColumn(
       columnDefObj.columnDef,
       columnDefObj.isDisplayed
     );
+  }
+
+  hideAllDisplayedColumns() {
+    this.serverFacadeService.hideAllDisplayedColumns();
   }
 
   resetDisplayedColumns() {

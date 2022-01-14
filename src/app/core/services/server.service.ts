@@ -37,6 +37,13 @@ export class ServerService {
   //   return response;
   // }
 
+  getPDF(params: QueryParams): Observable<Server[]> {
+    const queryString = this.buildPDFQuery(params);
+    return this.http.get<Server[]>(
+      `${environment.api_url}/servers?${queryString}`
+    );
+  }
+
   findBy(params: QueryParams): Observable<ServerResultDto> {
     const queryString = this.buildQuery(params);
     var response = this.http
@@ -53,6 +60,15 @@ export class ServerService {
         shareReplay(1)
       );
     return response;
+  }
+
+  private buildPDFQuery(params: QueryParams): string {
+    let queryString = `_sort=${params.sortBy}&_order=${params.order}`;
+
+    if (params.filterBy != '' && params.filterValue != '') {
+      queryString = `${params.filterBy}_like=${params.filterValue}&${queryString}`;
+    }
+    return queryString;
   }
 
   private buildQuery(params: QueryParams): string {

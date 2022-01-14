@@ -10,6 +10,9 @@ import { ServerFacadeService } from './server-facade.service';
 import { ServerColumnFilterComponent } from './server-column-filter/server-column-filter.component';
 import { ServerEditComponent } from './server-edit/server-edit.component';
 import { ServerPaginatorComponent } from './server-paginator/server-paginator.component';
+import { ServerDetailComponent } from './server-detail/server-detail.component';
+import { ServerChangeTrackingComponent } from './server-change-tracking/server-change-tracking.component';
+import { ServerExportPdfComponent } from './server-export-pdf/server-export-pdf.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { ServerPaginatorComponent } from './server-paginator/server-paginator.co
     ServerColumnFilterComponent,
     ServerEditComponent,
     ServerPaginatorComponent,
+    ServerDetailComponent,
+    ServerChangeTrackingComponent,
+    ServerExportPdfComponent,
   ],
   imports: [CommonModule, ServerRoutingModule, SharedModule],
   exports: [],

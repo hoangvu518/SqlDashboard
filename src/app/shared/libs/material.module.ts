@@ -10,6 +10,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
 import {
   MatDialogModule,
   MAT_DIALOG_DEFAULT_OPTIONS,
@@ -29,6 +33,10 @@ import {
     MatSelectModule,
     MatInputModule,
     MatDialogModule,
+    MatTooltipModule,
+    MatMenuModule,
+    MatCheckboxModule,
+    MatDividerModule,
   ],
   providers: [
     {

@@ -2,3 +2,11 @@
   max-width: 1200px;
   overflow-x: auto;
 }
+
+.row {
+  display: flex;
+}
+
+.row .spacer {
+  flex-grow: 1;
+}

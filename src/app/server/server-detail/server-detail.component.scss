@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+
+.row {
+  display: flex;
+}
+
+.row .col {
+  margin-right: 2rem;
+  width: 33.33%;
+}
