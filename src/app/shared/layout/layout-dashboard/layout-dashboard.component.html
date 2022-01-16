@@ -1,0 +1,46 @@
+<!-- <app-header></app-header>
+<p>layout-dashboard works!</p>
+<main>
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+</main> -->
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [opened]="true"
+    [mode]="'side'"
+  >
+    <mat-toolbar></mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/users" routerLinkActive="active">
+        Users <mat-icon>manage_accounts</mat-icon>
+      </a>
+      <a mat-list-item routerLink="/config" routerLinkActive="active">
+        Config</a
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <nav>
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+        >
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <app-header></app-header>
+      </nav>
+    </mat-toolbar>
+    <main>
+      <div class="main-content">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

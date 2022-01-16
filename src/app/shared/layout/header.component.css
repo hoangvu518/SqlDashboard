@@ -2,25 +2,13 @@
   background: rgba(0, 0, 0, 0.2);
 }
 
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 8px 16px;
-  width: 100%;
+.mat-menu-container {
+  padding: 0.5rem;
 }
 
 .spacer {
   flex-grow: 1;
 }
-
-.mat-menu-container {
-  padding: 0.5rem;
-}
-
-/* .mat-menu-content {
-  padding: 0;
-} */
 
 ::ng-deep .user-role-menu .mat-menu-content:not(:empty) {
   padding: 0 !important;

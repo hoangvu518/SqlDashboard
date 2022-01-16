@@ -1,10 +1,8 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import {
   ApplicationRole,
   AuthService,
-  AuthState,
   ThemeService,
   UserRole,
 } from '@core/services';
@@ -37,14 +35,6 @@ export class HeaderComponent implements OnInit {
       this.renderer.addClass(document.body, this.darkTheme);
     }
   }
-
-  // changeTheme(event: MatSlideToggleChange) {
-  //   if (event.checked) {
-  //     this.renderer.addClass(document.body, 'dark-theme');
-  //   } else {
-  //     this.renderer.removeClass(document.body, 'dark-theme');
-  //   }
-  // }
 
   isLightTheme(): boolean {
     return this.themeService.getTheme() == this.darkTheme ? false : true;

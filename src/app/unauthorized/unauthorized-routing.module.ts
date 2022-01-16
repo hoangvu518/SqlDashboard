@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './admin.component';
-import { AuthGuard } from './auth.guard';
+import { UnauthorizedComponent } from './unauthorized.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdminComponent,
-    canActivate: [AuthGuard],
+    component: UnauthorizedComponent,
   },
 ];
 
@@ -15,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutingModule {}
+export class UnauthorizedRoutingModule {}

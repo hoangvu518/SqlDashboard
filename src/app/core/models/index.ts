@@ -1,4 +1,3 @@
-export * from './employee';
 export * from './server';
 export * from './server-environment';
 export * from './server-status';

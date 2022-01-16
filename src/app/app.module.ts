@@ -15,10 +15,6 @@ import { SharedModule } from './shared/shared.module';
 
     CoreModule,
     SharedModule,
-
-    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-    //   dataEncapsulation: false,
-    // }),
   ],
   providers: [],
   bootstrap: [AppComponent],

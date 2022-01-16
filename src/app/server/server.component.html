@@ -1,15 +1,11 @@
 <div>
   Displayed Columns:
-  <ng-container *ngFor="let item of displayedColumns$ | async">
-    {{ item }}
-  </ng-container>
+  {{ displayedColumns$ | async | json }}
 </div>
 
 <div>
   All columns:
-  <ng-container *ngFor="let item of allColumn$ | async">
-    {{ item }}
-  </ng-container>
+  {{ allColumn$ | async | json }}
 </div>
 <div>
   Query Params:

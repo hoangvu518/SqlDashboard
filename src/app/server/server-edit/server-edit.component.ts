@@ -1,22 +1,15 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  Inject,
-  OnDestroy,
-} from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Environment, SQLVersion, Status } from '@core/models';
 import { Server } from '@core/models/server';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ServerFacadeService } from '../server-facade.service';
 
 @Component({
   selector: 'app-server-edit',
   templateUrl: './server-edit.component.html',
   styleUrls: ['./server-edit.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServerEditComponent implements OnInit, OnDestroy {
   serverEnvironments!: Environment[];
@@ -62,7 +55,7 @@ export class ServerEditComponent implements OnInit, OnDestroy {
   submit() {
     this.disabledSubmitButton = true;
     const updatedServer: Server = {
-      Id: this.editServerForm.get('Id')?.value,
+      Id: this.Id,
       PhysicalName: this.PhysicalName,
       AliasName: this.AliasName,
       ProjectName: this.ProjectName,

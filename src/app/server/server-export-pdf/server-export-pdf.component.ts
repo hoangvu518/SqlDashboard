@@ -1,15 +1,8 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Server } from '@core/models';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import { BehaviorSubject, of, Subject, Subscription, switchMap } from 'rxjs';
+import { Subject, Subscription, switchMap } from 'rxjs';
 import { ServerFacadeService } from '../server-facade.service';
 
 @Component({
@@ -23,7 +16,6 @@ export class ServerExportPdfComponent implements OnInit, OnDestroy {
   hiddenColumns!: string[];
 
   export$ = new Subject();
-  // exportSubscription!: Subscription;
   dataSubscription!: Subscription;
   displayedColumnSubscription!: Subscription;
   hiddenColumnSubscription!: Subscription;

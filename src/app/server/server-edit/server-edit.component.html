@@ -1,4 +1,9 @@
-<form [formGroup]="editServerForm" autocomplete="off" (ngSubmit)="submit()">
+<form
+  [formGroup]="editServerForm"
+  autocomplete="off"
+  (ngSubmit)="submit()"
+  [noValidate]="false"
+>
   <h1 mat-dialog-title>Edit Server</h1>
   <div mat-dialog-content>
     <div class="row">

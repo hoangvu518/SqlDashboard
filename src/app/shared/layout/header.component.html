@@ -1,59 +1,44 @@
-<mat-toolbar color="primary">
-  <!-- <mat-toolbar-row>
-    <span>My App</span>
-    <span class="example-spacer"></span>
-  </mat-toolbar-row> -->
-  <nav>
-    <!-- <button mat-button>Home</button>
-    <button>Admin</button> -->
-    <a
-      mat-button
-      routerLink="/"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
-      Home
-    </a>
-    <a
-      *ngIf="userHasAdminAccess$ | async"
-      mat-button
-      routerLink="/admin"
-      routerLinkActive="active"
-    >
-      Admin
-    </a>
-    <div class="spacer"></div>
-    <button mat-button [matMenuTriggerFor]="menu">
-      Impersonate
-      <mat-icon>expand_more</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu" [class]="'user-role-menu'">
-      <div class="mat-menu-container" (click)="$event.stopPropagation()">
-        <ul>
-          <li *ngFor="let role of userRoles$ | async">
-            <mat-checkbox
-              color="primary"
-              (change)="updateUserRole($event)"
-              [name]="role.applicationRole"
-              [checked]="role.isUserInThisRole"
-            >
-              {{ role.applicationRole.toString() }}
-            </mat-checkbox>
-          </li>
-        </ul>
-        <!-- <button mat-menu-item *ngFor="let role of applicationRoles$ | async">
-        {{ role.toString() }}
-      </button> -->
-        <!-- <button mat-menu-item>Regular User</button>
-        <button mat-menu-item>Admin</button> -->
-      </div>
-    </mat-menu>
-    <button
-      mat-icon-button
-      aria-label="view server change history"
-      (click)="changeTheme()"
-    >
-      <mat-icon>{{ isLightTheme() ? "brightness_2" : "wb_sunny" }}</mat-icon>
-    </button>
-  </nav>
-</mat-toolbar>
+<a
+  mat-button
+  routerLink="/"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+>
+  Home
+</a>
+<a
+  *ngIf="userHasAdminAccess$ | async"
+  mat-button
+  routerLink="/admin"
+  routerLinkActive="active"
+>
+  Admin
+</a>
+<div class="spacer"></div>
+<button mat-button [matMenuTriggerFor]="menu">
+  Impersonate
+  <mat-icon>expand_more</mat-icon>
+</button>
+<mat-menu #menu="matMenu" [class]="'user-role-menu'">
+  <div class="mat-menu-container" (click)="$event.stopPropagation()">
+    <ul>
+      <li *ngFor="let role of userRoles$ | async">
+        <mat-checkbox
+          color="primary"
+          (change)="updateUserRole($event)"
+          [name]="role.applicationRole"
+          [checked]="role.isUserInThisRole"
+        >
+          {{ role.applicationRole.toString() }}
+        </mat-checkbox>
+      </li>
+    </ul>
+  </div>
+</mat-menu>
+<button
+  mat-icon-button
+  aria-label="view server change history"
+  (click)="changeTheme()"
+>
+  <mat-icon>{{ isLightTheme() ? "brightness_2" : "wb_sunny" }}</mat-icon>
+</button>

@@ -1,13 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Environment, SQLVersion, Status } from '@core/models';
 import { Server } from '@core/models/server';
-import {
-  ServerResultDto,
-  QueryParams,
-  AuthService,
-  UserRole,
-} from '@core/services';
-import { BehaviorSubject, Observable, Subscription, switchMap } from 'rxjs';
+import { AuthService, QueryParams, UserRole } from '@core/services';
+import { Observable, Subject, Subscription, switchMap } from 'rxjs';
 import {
   ColumnDefinition,
   ServerFacadeService,
@@ -22,7 +16,6 @@ import {
 export class ServerComponent implements OnInit, OnDestroy {
   servers!: Server[];
   serverCount!: number;
-  // serverCount$!: Observable<number>;
   displayedColumns$!: Observable<string[]>;
   allColumn$!: Observable<string[]>;
   columnsDefinition$!: Observable<ColumnDefinition[]>;
@@ -32,7 +25,6 @@ export class ServerComponent implements OnInit, OnDestroy {
   userHasWriteAccess$!: Observable<boolean>;
 
   userRoles$!: Observable<UserRole[]>;
-
   queryParamsSubscription!: Subscription;
   updatedServerSubscription!: Subscription;
   constructor(
@@ -52,8 +44,8 @@ export class ServerComponent implements OnInit, OnDestroy {
     this.queryParamsSubscription = this.queryParams$
       .pipe(switchMap((x) => this.serverFacadeService.getServersAndCount()))
       .subscribe((x) => {
-        this.servers = x.Results;
-        this.serverCount = x.TotalCount;
+        this.servers = x.results;
+        this.serverCount = x.totalCount;
       });
 
     this.updatedServerSubscription =

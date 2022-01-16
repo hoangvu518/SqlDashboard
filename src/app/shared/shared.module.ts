@@ -7,9 +7,11 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './layout';
 
 import { MaterialModule } from './libs/material.module';
+import { LayoutDefaultComponent } from './layout/layout-default/layout-default.component';
+import { LayoutDashboardComponent } from './layout/layout-dashboard/layout-dashboard.component';
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent, LayoutDefaultComponent, LayoutDashboardComponent],
   imports: [
     CommonModule,
     FormsModule,

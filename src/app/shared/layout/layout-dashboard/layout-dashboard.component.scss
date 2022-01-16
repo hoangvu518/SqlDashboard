@@ -1,0 +1,40 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.main-content {
+  margin: 20px;
+}
+
+/* .mat-drawer-content{
+  overflow: auto;
+}  */
+// nav {
+//   display: flex;
+//   flex-wrap: wrap;
+//   align-items: center;
+//   padding: 8px 16px;
+//   width: 100%;
+// }
+
+app-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 8px 16px;
+  width: 100%;
+}

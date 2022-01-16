@@ -5,8 +5,8 @@ import { environment } from 'src/environments/environment';
 import { Server } from '../models/server';
 
 export interface ServerResultDto {
-  TotalCount: number;
-  Results: Server[];
+  totalCount: number;
+  results: Server[];
 }
 
 export interface QueryParams {
@@ -20,22 +20,6 @@ export interface QueryParams {
 @Injectable()
 export class ServerService {
   constructor(private http: HttpClient) {}
-  // getAll(): Observable<ServerResultDto> {
-  //   var response = this.http
-  //     .get(`${environment.api_url}/servers?_start=20&_end=30`, {
-  //       observe: 'response',
-  //     })
-  //     .pipe(
-  //       switchMap((x) =>
-  //         of({
-  //           TotalCount: x.headers.get('X-Total-Count') ?? 0,
-  //           Results: x.body,
-  //         } as ServerResultDto)
-  //       ),
-  //       shareReplay()
-  //     );
-  //   return response;
-  // }
 
   getPDF(params: QueryParams): Observable<Server[]> {
     const queryString = this.buildPDFQuery(params);
@@ -53,8 +37,8 @@ export class ServerService {
       .pipe(
         switchMap((x) =>
           of({
-            TotalCount: x.headers.get('X-Total-Count') ?? 0,
-            Results: x.body,
+            totalCount: x.headers.get('X-Total-Count') ?? 0,
+            results: x.body,
           } as ServerResultDto)
         ),
         shareReplay(1)

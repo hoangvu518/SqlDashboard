@@ -8,7 +8,6 @@ import {
   Output,
 } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Observable, Subscription } from 'rxjs';
 import { ColumnDefinition } from '../server-facade.service';
 
@@ -23,33 +22,19 @@ export class ServerColumnFilterComponent implements OnInit, OnDestroy {
   @Output() displayedColumnsChanged = new EventEmitter<ColumnDefinition>();
   @Output() displayedColumnsReset = new EventEmitter();
   @Output() displayedColumnsHiddenAll = new EventEmitter();
-  // panelOpenState = false;
 
   columnsDefinition!: ColumnDefinition[];
   subscription!: Subscription;
 
-  // isAllChecked = false;
   constructor() {}
-  ngOnDestroy(): void {
-    // throw new Error('Method not implemented.');
-    this.subscription.unsubscribe();
-  }
   ngOnInit(): void {
-    // throw new Error('Method not implemented.');
     this.subscription = this.columnsDefinition$.subscribe(
       (x) => (this.columnsDefinition = x)
     );
   }
-
-  // changeColumnDisplay(change: MatSlideToggleChange) {
-  //   const columnDef = change.source.name;
-  //   const isDisplayed = change.checked;
-  //   const columnDefObj = {
-  //     columnDef: columnDef,
-  //     isDisplayed: isDisplayed,
-  //   } as ColumnDefinition;
-  //   this.displayedColumnsChanged.emit(columnDefObj);
-  // }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   updateColumnDisplay(event: MatCheckboxChange) {
     const columnDef = event.source.name;
@@ -70,7 +55,6 @@ export class ServerColumnFilterComponent implements OnInit, OnDestroy {
   }
 
   isSomeChecked(): boolean {
-    // return false;
     return (
       this.columnsDefinition.filter((x) => x.isDisplayed == true).length > 0 &&
       this.isAllChecked() == false
