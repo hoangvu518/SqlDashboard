@@ -1,10 +1,12 @@
-# SqlDashboard
+# Launch the app with docker-compose
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.
+If you just want to launch the app to see how it works, just run `docker-compose up`. It will automatically run the angular app and json-server.
+
+# This portion below is for development mode only
 
 ## Json Server
 
-This project uses json-server `https://github.com/typicode/json-server` as an inmemory database. Before launching the app using `ng serve`, run this command `json-server --watch db.json` first to bootstrap json-server
+This project uses json-server `https://github.com/typicode/json-server`. Before launching the app using `ng serve`, run this command `json-server --watch db.json` first to bootstrap json-server
 
 ## Development server
 
