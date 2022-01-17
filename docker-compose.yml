@@ -1,0 +1,19 @@
+version: '2' # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+  json-server: #name of the second service
+    build:
+      context: ./
+      dockerfile: ./docker/json-server/Dockerfile
+    ports:
+      - "3000:3000" #specify ports forwarding
+
+  angular: # name of the first service
+    build:
+      context: ./
+      dockerfile: ./docker/web/Dockerfile
+    ports:
+      - "4200:4200" # specify port forewarding
+
+
